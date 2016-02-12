@@ -15,15 +15,15 @@ ok($tree ~~ Tree::Simple);
 
 my $test = "test";
 
-my $SCALAR_REF = \$test;
-my $REF_TO_REF = \$SCALAR_REF;
-my $ARRAY_REF = [ 1, 2, 3, 4 ];
-my $HASH_REF = { one => 1, two => 2 };
-my $CODE_REF = sub { "code ref test" };
-my $SUB_TREE = Tree::Simple.new("sub tree test");
+my $SCALAR_REF := $test;
+my $REF_TO_REF := $SCALAR_REF;
+my $ARRAY_REF := [ 1, 2, 3, 4 ];
+my $HASH_REF := { one => 1, two => 2 };
+my $CODE_REF := sub { "code ref test" };
+my $SUB_TREE := Tree::Simple.new("sub tree test");
 class Misc { has $.name;};
-my $MISC_OBJECT = Misc.new(name => "Misc");
-my $REGEX_REF = rx/^hello\sworld$/;
+my $MISC_OBJECT := Misc.new(name => "Misc");
+my $REGEX_REF := rx/^hello\sworld$/;
 $tree.addChildren(
 
  		Tree::Simple.new("non-ref"),	
@@ -52,6 +52,9 @@ isnt($clone.WHICH, $tree.WHICH, '... these should be refs');
 is($clone.getChild(0).getNodeValue(), $tree.getChild(0).getNodeValue(), '... these should be the same value');
 
 # they should both be scalar refs
+my $c = $clone.getChild(1);
+say "Cone: ", $c.getNodeValue().WHAT;
+say "Cone: ", $clone.getChild(2).getNodeValue().WHAT;
 ok($clone.getChild(1).getNodeValue().WHAT ~~ Capture, '... these should be scalar refs');
 ok($tree.getChild(1).getNodeValue().WHAT ~~ Capture, '... these should be scalar refs');
 # but different ones based on their memory address

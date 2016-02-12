@@ -307,11 +307,11 @@ for @children ->  $_sub_tree {
 ## test addChildren
 ## ----------------------------------------------------------------------------	
 
-my @sub_children = (
+my @sub_children = 
  			Tree::Simple.new("1.1"),
 			Tree::Simple.new("1.5"),
 			Tree::Simple.new("1.6")
-			);
+			;
 
 # now go through the children and test them
 for @sub_children ->  $sub_child {
@@ -368,11 +368,11 @@ for @sub_children -> $sub_child {
 ## test insertingChildren
 ## ----------------------------------------------------------------------------	
 
-my @more_sub_children = (
+my @more_sub_children = 
   			Tree::Simple.new("1.2"),
  			Tree::Simple.new("1.3"),
  			Tree::Simple.new("1.4")
-			);
+			;
 
 # now go through the children and test them
 for @more_sub_children -> $sub_child {
@@ -398,7 +398,8 @@ is($sub_tree.getChildCount(), 6, '... we should have 6 children now');
 
 # now check that sub_tree's children 
 # are the same as our list
-is-deeply([ $sub_tree.getAllChildren() ], [ @sub_children[0], @more_sub_children, @sub_children[1 .. @sub_children.end()] ]);
+#is-deeply([ $sub_tree.getAllChildren() ], [ @sub_children[0], @more_sub_children, @sub_children[1 .. @sub_children.end()] ]);
+is-deeply([ $sub_tree.getAllChildren() ], [ @sub_children[0] , |@more_sub_children, |@sub_children[1 .. @sub_children.end()] ]);
 
 # now go through the children again
 # and test them
@@ -869,28 +870,28 @@ is($removed_tree_3, $tree_to_remove_3, '... these tree should be equal');
 
 # make a control set of 
 # all the nodes we have
-my @_all_node_values = <
-	1.0 
-		1.1 
-		1.2
-		1.3
-		1.4
-		1.5
-		1.6
-	2.0
-		2.1
-			2.1.1
-	3.0
-		3.1
-			3.1.1
-			3.1.2
-	4.0
-	5.0
-	6.0
-	7.0
-	8.0
-	9.0
-	>;
+my @_all_node_values =
+	'1.0',
+		'1.1',
+		'1.2',
+		'1.3',
+		'1.4',
+		'1.5',
+		'1.6',
+	'2.0',
+		'2.1',
+			'2.1.1',
+	'3.0',
+		'3.1',
+			'3.1.1',
+			'3.1.2',
+	'4.0',
+	'5.0',
+	'6.0',
+	'7.0',
+	'8.0',
+	'9.0'
+	;
 
 my @all_node_values;
 # now collect the nodes in the actual tree
@@ -905,48 +906,48 @@ is-deeply(@_all_node_values, @all_node_values, '... our nodes match our control 
 # test traverse with both pre- and post- methods
 # make a control set of 
 # all the nodes we have with XML-style
-my @_all_node_values_post_traverse = <
-	1.0 
- 		1.1 
-         1.1
- 		1.2
-         1.2
- 		1.3
-         1.3
- 		1.4
-         1.4
- 		1.5
-         1.5
- 		1.6
-         1.6
-     1.0
- 	2.0
- 		2.1
- 			2.1.1
-             2.1.1
-         2.1
-     2.0
- 	3.0
- 		3.1
- 			3.1.1
-             3.1.1
- 			3.1.2
-             3.1.2
-         3.1
-     3.0
- 	4.0
-     4.0
- 	5.0
-     5.0
- 	6.0
-     6.0
- 	7.0
-     7.0
- 	8.0
- 	8.0
- 	9.0
- 	9.0
- 	>;
+my @_all_node_values_post_traverse = 
+	'1.0',
+ 		'1.1',
+         '1.1',
+ 		'1.2',
+         '1.2',
+ 		'1.3',
+         '1.3',
+ 		'1.4',
+         '1.4',
+ 		'1.5',
+         '1.5',
+ 		'1.6',
+         '1.6',
+     '1.0',
+ 	'2.0',
+ 		'2.1',
+ 			'2.1.1',
+             '2.1.1',
+         '2.1',
+     '2.0',
+ 	'3.0',
+ 		'3.1',
+ 			'3.1.1',
+             '3.1.1',
+ 			'3.1.2',
+             '3.1.2',
+         '3.1',
+     '3.0',
+ 	'4.0',
+     '4.0',
+ 	'5.0',
+     '5.0',
+ 	'6.0',
+     '6.0',
+ 	'7.0',
+     '7.0',
+ 	'8.0',
+ 	'8.0',
+ 	'9.0',
+ 	'9.0',
+ 	;
 
 
 my @all_node_values_post_traverse;

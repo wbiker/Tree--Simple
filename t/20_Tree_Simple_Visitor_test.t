@@ -30,7 +30,7 @@ $tree.accept($visitor);
 
 ok $visitor.can('getResults'),"Can do getResults";
 
-is-deeply([ $visitor.getResults() ], [ <1 1.1 1.2 1.2.1 1.3 2 3>],
+is-deeply([ $visitor.getResults() ], [ "1", "1.1", "1.2", "1.2.1", "1.3", "2", "3"],
          '... got what we expected');
 
 ok($visitor.can('setNodeFilter'));
@@ -39,7 +39,9 @@ my $node_filter = sub (*@x) { return "_" ~ @x[0].getNodeValue() };
 $visitor.setNodeFilter($node_filter);
 
 ok($visitor.can('getNodeFilter'));
-is($visitor.getNodeFilter(), "$node_filter", '... got back what we put in');
+# get the string back from the code regerences
+is($visitor.getNodeFilter().perl, $node_filter.perl, '... got back what we put in');
+#is($visitor.getNodeFilter(), "$node_filter", '... got back what we put in');
 
 # visit the tree again to get new results now
 $tree.accept($visitor);
@@ -203,7 +205,7 @@ lives-ok( {
      my $filter = sub { "filter" };
     
      $visitor.setNodeFilter($filter);
-     is($visitor.getNodeFilter(), $filter, 'our node filter is set correctly');
+     is($visitor.getNodeFilter().perl, $filter.perl, 'our node filter is set correctly');
     
      $visitor.clearNodeFilter();
      ok(! defined($visitor.getNodeFilter()), '... our node filter has now been undefined'); 

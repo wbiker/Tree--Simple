@@ -10,10 +10,10 @@ use Tree::Simple;
 # test height (with pictures)
 {    
     my $tree = Tree::Simple.new();
-    ok($tree, Tree::Simple);
+    ok($tree ~~ Tree::Simple);
 
     my $D = Tree::Simple.new('D');
-    ok($D, Tree::Simple);
+    ok($D ~~ Tree::Simple);
     
     $tree.addChild($D);
     
@@ -23,7 +23,7 @@ use Tree::Simple;
     is($D.getHeight(), 1, '... D has a height of 1');
     
     my $E = Tree::Simple.new('E');
-    ok($E, Tree::Simple);
+    ok($E ~~ Tree::Simple);
     
     $D.addChild($E);
     
@@ -36,7 +36,7 @@ use Tree::Simple;
     is($E.getHeight(), 1, '... E has a height of 1');
     
     my $F = Tree::Simple.new('F');
-    ok($F, Tree::Simple);
+    ok($F ~~ Tree::Simple);
     
     $E.addChild($F);
     
@@ -52,7 +52,7 @@ use Tree::Simple;
     is($F.getHeight(), 1, '... F has a height of 1');
     
     my $C = Tree::Simple.new('C');
-    ok($C, Tree::Simple);
+    ok($C ~~ Tree::Simple);
     
     $D.addChild($C);
     
@@ -69,7 +69,7 @@ use Tree::Simple;
     is($C.getHeight(), 1, '... C has a height of 1');
     
     my $B = Tree::Simple.new('B');
-    ok($B, Tree::Simple);
+    ok($B ~~ Tree::Simple);
     
     $C.addChild($B);
     
@@ -88,7 +88,7 @@ use Tree::Simple;
     is($B.getHeight(), 1, '... B has a height of 1');
     
     my $A = Tree::Simple.new('A');
-    ok($A, Tree::Simple);
+    ok($A ~~ Tree::Simple);
     
     $B.addChild($A);
     
@@ -109,7 +109,7 @@ use Tree::Simple;
     is($A.getHeight(), 1, '... A has a height of 1');
     
     my $G = Tree::Simple.new('G');
-    ok($G, Tree::Simple);
+    ok($G ~~ Tree::Simple);
 
     #TODO need to make alias for 'insertChild' that direct to insertChildAt 
     $E.insertChildAt(0, $G);
@@ -132,7 +132,7 @@ use Tree::Simple;
     is($A.getHeight(), 1, '... A has a height of 1');
     
     my $H = Tree::Simple.new('H');
-    ok($H, Tree::Simple);
+    ok($H ~~ Tree::Simple);
     
     $G.addChild($H);
     

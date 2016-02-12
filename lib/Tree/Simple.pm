@@ -1,4 +1,4 @@
-class Tree::Simple {
+unit class Tree::Simple;
     ## class constants
     our $ROOT = "root";
 
@@ -585,8 +585,6 @@ method DESTROY() {
 ## ----------------------------------------------------------------------------
 ## end Tree::Simple
 ## ----------------------------------------------------------------------------
-
-};
 
 
 =begin pod
